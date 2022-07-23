@@ -49,3 +49,14 @@ def merge_sort(arr)
   end
   arr_c
 end
+
+require 'pry-byebug'
+
+# sum of multiples of 3 or 5 below 1000
+def multiples(count = 999, sum = 0)
+  return sum if count == 0
+  sum += count if (count % 5 == 0) || (count % 3 == 0)
+  multiples(count - 1, sum)
+end
+
+p multiples
