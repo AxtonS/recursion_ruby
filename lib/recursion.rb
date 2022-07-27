@@ -60,13 +60,11 @@ def multiples(count = 999, sum = 0)
 end
 
 # sum of even fibonacci numbers below 4 million
-def fibs_even(n = 48)
+def fibs_even(num = 48)
   sum = 0
-  while n >= 2 && fibs(n)[n-1] < 4000000000
-    if fibs(n)[n-1] % 2 == 0
-      sum += fibs(n)[n-1]
-    end
-    n -= 1
+  while num >= 2 && fibs(num)[num-1] < 4_000_000_000
+    sum += fibs(num)[num - 1] if fibs(num)[num - 1].even?
+    num -= 1
   end
   sum
 end
