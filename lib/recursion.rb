@@ -59,12 +59,37 @@ def multiples(count = 999, sum = 0)
   multiples(count - 1, sum)
 end
 
-# sum of even fibonacci numbers below 4 million
-def fibs_even(num = 48)
-  sum = 0
-  while num >= 2 && fibs(num)[num-1] < 4_000_000_000
-    sum += fibs(num)[num - 1] if fibs(num)[num - 1].even?
-    num -= 1
+# sum of the even fibonacci numbers
+def even_fibs(n = 1, sum = 0)
+  if n == 1
+    f = 0
+  elsif n == 2
+    f = 1
+  else
+    f = even_fibs(n - 1, sum) + even_fibs(n - 2, sum)
   end
-  sum
+  if f % 2 == 0
+    sum += f
+  end
+  n += 1 
+  if f >= 4000000000
+    return sum
+  end
+end
+
+# largest prime factors
+require 'prime'
+
+def get_prime_factors(num)
+  return nil if num <= 1
+  factors = []
+  (2..num).each do |i| 
+    if i.prime? && num % i == 0
+      factors << i
+      factors << get_prime_factors(num / i)
+      break
+    end
+  end
+  factors.delete(nil)
+  factors.max
 end
