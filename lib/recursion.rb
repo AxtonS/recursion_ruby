@@ -93,3 +93,19 @@ def get_prime_factors(num)
   factors.delete(nil)
   factors.max
 end
+
+# largest palindrome made up of product of two 3 digit numbers
+# works but gets stack overflow error on 3 digit numbers
+
+def largest_palindrome(x = 999, y = 999, largest = 0)
+  product = x * y
+  largest = product if product > largest && product.to_s.reverse.to_i == product
+
+  if x == 0 && y == 0
+    return largest
+  elsif x >= 0
+    largest_palindrome(x - 1, y, largest)
+  else
+    largest_palindrome(x = y - 1, y - 1, largest)
+  end
+end
