@@ -110,3 +110,14 @@ def largest_palindrome(x = 999, y = 999, min = 100, largest = 0)
     largest_palindrome(x - 1, x - 1, min, largest)
   end
 end
+
+# smallest number divisible by 1 through 20
+# only works up to 1 through 10 without stack overflow error
+
+def smallest_divisible(num = 1)
+  return num if (1..20).all? { |divider| (num % divider).zero?}
+
+  smallest_divisible(num + 1)
+end
+
+p smallest_divisible
